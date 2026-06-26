@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Mediverse | Home{% endblock %}
+
+{% block content %}
+
+<div class="landing-page">
+
+    <!-- Header -->
+    <header class="top-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-capsules"></i>
+            </div>
+
+            <div>
+                <h2>Mediverse</h2>
+                <span>Your Digital Pharmacy</span>
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- Hero -->
+
+    <section class="hero">
+
+        <div class="hero-icon">
+            <i class="fa-solid fa-truck-medical"></i>
+        </div>
+
+        <h1>
+            Medicines Delivered
+            <br>
+            To Your Doorstep
+        </h1>
+
+        <p>
+            Upload your prescription or browse medicines
+            from our catalogue.
+        </p>
+
+    </section>
+
+
+    <!-- Upload Card -->
+
+    <a href="{{ url_for('upload') }}" class="action-card primary-card">
+
+        <div class="card-icon">
+            <i class="fa-solid fa-file-medical"></i>
+        </div>
+
+        <div class="card-content">
+
+            <h3>Upload Prescription</h3>
+
+            <p>
+                Let our AI detect medicines
+                from your doctor's prescription.
+            </p>
+
+        </div>
+
+        <div class="card-arrow">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+    </a>
+
+
+    <div class="divider">
+        <span>OR</span>
+    </div>
+
+
+    <!-- Browse Medicines -->
+
+    <a href="#" class="action-card">
+
+        <div class="card-icon green">
+
+            <i class="fa-solid fa-pills"></i>
+
+        </div>
+
+        <div class="card-content">
+
+            <h3>Browse Medicines</h3>
+
+            <p>
+                Search medicines and add
+                them directly to your cart.
+            </p>
+
+        </div>
+
+        <div class="card-arrow">
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+
+    </a>
+
+
+
+    <!-- Features -->
+
+    <section class="features">
+
+        <div class="feature">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <span>AI Prescription Reading</span>
+
+        </div>
+
+        <div class="feature">
+
+            <i class="fa-solid fa-shield-heart"></i>
+
+            <span>100% Genuine Medicines</span>
+
+        </div>
+
+        <div class="feature">
+
+            <i class="fa-solid fa-motorcycle"></i>
+
+            <span>Fast Home Delivery</span>
+
+        </div>
+
+        <div class="feature">
+
+            <i class="fa-solid fa-credit-card"></i>
+
+            <span>Secure Payments</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 Mediverse
+        </p>
+
+    </footer>
+
+</div>
+
+{% endblock %}

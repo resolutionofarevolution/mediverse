@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Prescription{% endblock %}
+
+{% block content %}
+
+<div class="upload-page">
+
+    <!-- Header -->
+
+    <header class="page-header">
+
+        <a href="{{ url_for('home') }}" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <h2>Upload Prescription</h2>
+
+    </header>
+
+
+    <!-- Hero -->
+
+    <section class="upload-hero">
+
+        <div class="upload-icon">
+
+            <i class="fa-solid fa-file-medical"></i>
+
+        </div>
+
+        <h1>Upload Your Prescription</h1>
+
+        <p>
+
+            Upload a clear image or PDF.
+            Our AI will automatically detect
+            medicines for you.
+
+        </p>
+
+    </section>
+
+
+    <!-- Upload Form -->
+
+<form
+    action="{{ url_for('upload_prescription') }}"
+    method="POST"
+    enctype="multipart/form-data"
+    id="uploadForm"
+>
+
+        <label
+            class="upload-box"
+            for="prescriptionInput"
+        >
+
+            <div id="previewContainer">
+
+                <i class="fa-solid fa-cloud-arrow-up upload-big-icon"></i>
+
+                <h3>Tap to Upload</h3>
+
+                <p>
+
+                    JPG • PNG • PDF
+
+                </p>
+
+            </div>
+
+            <input
+                type="file"
+                id="prescriptionInput"
+                name="prescription"
+                accept=".jpg,.jpeg,.png,.pdf"
+                hidden
+                required
+            >
+
+        </label>
+
+
+        <button
+            class="btn upload-btn"
+            type="submit"
+        >
+
+            Continue
+
+        </button>
+
+    </form>
+
+
+    <!-- Tips -->
+
+    <section class="tips">
+
+        <h3>For Best Results</h3>
+
+        <div class="tip">
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>Keep prescription fully visible</span>
+
+        </div>
+
+        <div class="tip">
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>Use good lighting</span>
+
+        </div>
+
+        <div class="tip">
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>Avoid blurry images</span>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

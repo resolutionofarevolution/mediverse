@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Processing Prescription{% endblock %}
+
+{% block content %}
+
+<div class="processing-page">
+
+    <div class="processing-card">
+
+        <div class="scanner">
+
+            <div class="document">
+
+                <i class="fa-solid fa-file-medical"></i>
+
+                <div class="scan-line"></div>
+
+            </div>
+
+        </div>
+
+        <h1>Reading Your Prescription</h1>
+
+        <p id="statusText">
+            Upload received successfully...
+        </p>
+
+        <div class="progress-wrapper">
+
+            <div class="progress-bar">
+
+                <div class="progress-fill" id="progressFill"></div>
+
+            </div>
+
+            <span id="progressPercent">0%</span>
+
+        </div>
+
+        <div class="steps">
+
+            <div class="step active" id="step1">
+                <i class="fa-solid fa-file-circle-check"></i>
+                Prescription Uploaded
+            </div>
+
+            <div class="step" id="step2">
+                <i class="fa-solid fa-eye"></i>
+                Reading Text
+            </div>
+
+            <div class="step" id="step3">
+                <i class="fa-solid fa-pills"></i>
+                Detecting Medicines
+            </div>
+
+            <div class="step" id="step4">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Preparing Order
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

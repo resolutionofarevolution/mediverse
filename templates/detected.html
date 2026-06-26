@@ -1,0 +1,871 @@
+{% extends "base.html" %}
+
+{% block title %}Review Medicines{% endblock %}
+
+{% block content %}
+
+<div class="detected-page">
+
+    <!-- Header -->
+
+    <header class="page-header">
+
+        <a href="{{ url_for('upload') }}" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <div>
+            <h2>Review Prescription</h2>
+            <p>Verify medicines before checkout</p>
+        </div>
+
+    </header>
+<!-- ==========================
+CHECKOUT PROGRESS
+========================== -->
+
+<div class="checkout-progress">
+
+<div class="progress-header">
+
+    <div>
+
+        <h2>Complete Your Order</h2>
+
+        <p class="progress-subtitle">
+            Secure checkout in a few simple steps
+        </p>
+
+    </div>
+
+    <span id="stepIndicator" class="step-badge">
+
+        Step 1 of 5
+
+    </span>
+
+</div>
+
+<div class="progress-bar">
+
+    <div
+        class="progress-fill"
+        id="wizardProgress"
+        style="width:20%;"
+    ></div>
+
+</div>
+
+</div>
+
+<div
+id="step1"
+class="wizard-step active-step">
+    <!-- Prescription Summary -->
+
+    <section class="prescription-summary">
+
+        <div class="summary-top">
+
+            <div class="success-icon">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Prescription Successfully Read</h3>
+
+                <span>OCR Confidence : 98%</span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="patient-grid">
+
+            <div class="info">
+
+                <label>Patient</label>
+
+                <strong id="patientName">
+                    Rahul Sharma
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <label>Doctor</label>
+
+                <strong id="doctorName">
+                    Dr. Amit Patel
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <label>Date</label>
+
+                <strong>
+                    24 Jun 2026
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <label>Medicines</label>
+
+                <strong id="medicineCount">
+                    3 Detected
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Search -->
+
+    <section class="search-section">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="medicineSearch"
+                placeholder="Search or add medicine..."
+            >
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Medicine List -->
+    <section class="medicine-list" id="medicineList">
+
+
+
+{% for medicine in medicines %}
+
+<div class="medicine-card">
+
+    <!-- Medicine Image -->
+
+    <div class="medicine-image">
+
+        <img src="https://placehold.co/90x90/f8fafc/2563eb?text=💊"
+             alt="{{ medicine.name }}">
+
+    </div>
+
+
+    <!-- Right Section -->
+
+    <div class="medicine-content">
+
+        <!-- Top -->
+
+        <div class="medicine-top">
+
+            <div>
+
+                <span class="ai-badge">
+
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                    {{ medicine.score }} AI Match
+
+                </span>
+
+                <h3>{{ medicine.name }}</h3>
+
+                <p>
+
+                    {{ medicine.company }}
+
+                    •
+
+                    {{ medicine.unit }}
+
+                </p>
+
+            </div>
+
+            <button class="delete-btn">
+
+                <i class="fa-solid fa-trash"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- Bottom -->
+
+        <div class="medicine-bottom">
+
+            <div class="price-section">
+
+                <small>Price</small>
+
+                <h3>₹{{ medicine.price }}</h3>
+
+            </div>
+
+
+            <div class="qty-box">
+
+                <button class="qty-btn minus">
+
+                    <i class="fa-solid fa-minus"></i>
+
+                </button>
+
+                <span class="qty">
+
+                    {{ medicine.qty }}
+
+                </span>
+
+                <button class="qty-btn plus">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+
+
+
+
+<div class="add-medicine-card">
+
+    <i class="fa-solid fa-circle-plus"></i>
+
+    <div>
+
+        <h3>Add Medicine</h3>
+
+        <p>Search and add another medicine</p>
+
+    </div>
+
+</div>
+
+</section>
+
+    <!-- Delivery Section -->
+
+<!-- Bottom Spacing -->
+
+
+
+</div>
+<!-- ==========================================
+MEDIVERSE STEP 2 - DELIVERY ADDRESS
+========================================== -->
+
+<div id="step2" class="wizard-step">
+
+    <div class="mediverse-address-card">
+
+        <div class="mediverse-address-header">
+
+            <h2>Delivery Address</h2>
+
+            <p>Select where you want your medicines delivered</p>
+
+        </div>
+
+        <!-- Current Location -->
+
+        <div class="mediverse-location-box">
+
+            <div class="mediverse-location-left">
+
+                <i class="fa-solid fa-location-crosshairs"></i>
+
+                <div>
+                    <h4>Use Current Location</h4>
+                    <p>Automatically detect your location</p>
+                </div>
+
+            </div>
+
+            <button class="mediverse-primary-small-btn">
+                Use
+            </button>
+
+        </div>
+
+        <!-- Saved Address -->
+
+        <div class="mediverse-saved-address">
+
+            <div class="mediverse-location-left">
+
+                <i class="fa-solid fa-house"></i>
+
+                <div>
+                    <h4>Home</h4>
+                    <p>Sector 15, CBD Belapur</p>
+                </div>
+
+            </div>
+
+            <button class="mediverse-selected-btn">
+                Selected
+            </button>
+
+        </div>
+
+        <!-- Divider -->
+
+        <div class="mediverse-divider">
+            OR
+        </div>
+
+        <!-- Add Address Trigger -->
+
+        <div
+            class="mediverse-add-address-trigger"
+            onclick="mediverseToggleAddressStep2()"
+        >
+
+            <i class="fa-solid fa-plus"></i>
+
+            <span>Add New Address</span>
+
+        </div>
+
+        <!-- Hidden Form -->
+
+        <div
+            id="mediverseAddressFormStep2"
+            class="mediverse-address-form-container"
+        >
+
+            <div class="mediverse-address-grid">
+
+                <div class="mediverse-full-row">
+
+                    <label>House / Flat No</label>
+
+                    <input
+                        type="text"
+                        placeholder="Flat 203"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>Building</label>
+
+                    <input
+                        type="text"
+                        placeholder="Sai Orchid"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>Area</label>
+
+                    <input
+                        type="text"
+                        placeholder="Sector 15"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>City</label>
+
+                    <input
+                        type="text"
+                        placeholder="Navi Mumbai"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>Pincode</label>
+
+                    <input
+                        type="text"
+                        placeholder="400614"
+                    >
+
+                </div>
+
+                <div class="mediverse-full-row">
+
+                    <label>State</label>
+
+                    <input
+                        type="text"
+                        placeholder="Maharashtra"
+                    >
+
+                </div>
+
+            </div>
+
+            <button class="mediverse-save-address-btn">
+
+                Save Address
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================
+STEP 3 - CONTACT DETAILS
+========================== -->
+
+<div id="step3" class="wizard-step">
+
+<div class="step-card">
+
+    <div class="contact-step-header">
+
+        <h2>Contact Details</h2>
+
+        <p>
+            We'll send order updates and delivery notifications here
+        </p>
+
+    </div>
+
+    <div class="contact-form-container">
+
+        <div class="contact-input-group">
+
+            <label>Mobile Number</label>
+
+            <input
+                type="tel"
+                id="customerMobile"
+                placeholder="Enter mobile number"
+            >
+
+        </div>
+
+        <div class="contact-input-group">
+
+            <label>Email Address (Optional)</label>
+
+            <input
+                type="email"
+                id="customerEmail"
+                placeholder="Enter email address"
+            >
+
+        </div>
+
+        <div class="contact-info-box">
+
+            <i class="fa-solid fa-shield-heart"></i>
+
+            <span>
+                Your contact details are used only for order updates.
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================
+STEP 4 - REVIEW ORDER
+========================== -->
+
+<div id="step4" class="wizard-step">
+
+<div class="step-card">
+
+    <div class="review-order-header">
+
+        <h2>Review Your Order</h2>
+
+        <p>
+            Please verify your details before proceeding to payment
+        </p>
+
+    </div>
+
+    <!-- Patient -->
+
+    <div class="review-section">
+
+        <div class="review-section-title">
+
+            <i class="fa-solid fa-user"></i>
+
+            Patient Details
+
+        </div>
+
+        <div class="review-card">
+
+            <strong>John Doe</strong>
+
+            <span>Prescription ID: RX-2026-001</span>
+
+        </div>
+
+    </div>
+
+    <!-- Medicines -->
+
+    <div class="review-section">
+
+        <div class="review-section-title">
+
+            <i class="fa-solid fa-capsules"></i>
+
+            Medicines
+
+        </div>
+
+        <div class="review-card">
+
+            <div class="review-row">
+                <span>Paracetamol 650mg × 2</span>
+                <strong>₹120</strong>
+            </div>
+
+            <div class="review-row">
+                <span>Vitamin D3 × 1</span>
+                <strong>₹180</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Address -->
+
+    <div class="review-section">
+
+        <div class="review-section-title">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            Delivery Address
+
+        </div>
+
+        <div class="review-card">
+
+            Flat 203, Sai Orchid
+
+            <br>
+
+            Sector 15, CBD Belapur
+
+            <br>
+
+            Navi Mumbai - 400614
+
+        </div>
+
+    </div>
+
+    <!-- Contact -->
+
+    <div class="review-section">
+
+        <div class="review-section-title">
+
+            <i class="fa-solid fa-phone"></i>
+
+            Contact
+
+        </div>
+
+        <div class="review-card">
+
+            +91 9876543210
+
+            <br>
+
+            john@example.com
+
+        </div>
+
+    </div>
+
+    <!-- Price Summary -->
+
+    <div class="order-summary-card">
+
+        <h3>Payment Summary</h3>
+
+        <div class="summary-line">
+
+            <span>Subtotal</span>
+
+            <span>₹300</span>
+
+        </div>
+
+        <div class="summary-line">
+
+            <span>Delivery Charges</span>
+
+            <span class="free-tag">FREE</span>
+
+        </div>
+
+        <div class="summary-line">
+
+            <span>GST</span>
+
+            <span>Included</span>
+
+        </div>
+
+        <hr>
+
+        <div class="summary-total">
+
+            <span>Total Amount</span>
+
+            <strong>₹300</strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ==========================
+STEP 5 - PAYMENT
+========================== -->
+
+<div id="step5" class="wizard-step">
+
+<div class="step-card">
+
+    <div class="payment-header">
+
+        <h2>Choose Payment Method</h2>
+
+        <p>
+            Secure payment powered by Mediverse
+        </p>
+
+    </div>
+
+    <div class="payment-method-list">
+
+        <div class="payment-method selected-payment">
+
+            <input
+                type="radio"
+                name="paymentMethod"
+                checked
+            >
+
+            <div>
+                <h4>Google Pay</h4>
+                <p>Pay instantly using GPay</p>
+            </div>
+
+        </div>
+
+        <div class="payment-method">
+
+            <input
+                type="radio"
+                name="paymentMethod"
+            >
+
+            <div>
+                <h4>UPI</h4>
+                <p>Pay using any UPI app</p>
+            </div>
+
+        </div>
+
+        <div class="payment-method">
+
+            <input
+                type="radio"
+                name="paymentMethod"
+            >
+
+            <div>
+                <h4>Debit / Credit Card</h4>
+                <p>Visa, Mastercard, RuPay</p>
+            </div>
+
+        </div>
+
+        <div class="payment-method">
+
+            <input
+                type="radio"
+                name="paymentMethod"
+            >
+
+            <div>
+                <h4>Cash On Delivery</h4>
+                <p>Pay when medicines arrive</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="payment-total-card">
+
+        <span>Total Payable</span>
+
+        <strong>₹300</strong>
+
+    </div>
+
+
+
+</div>
+
+</div>
+
+<!-- ==========================
+SUCCESS SCREEN
+========================== -->
+
+<div
+    id="mediverseSuccessScreen"
+    class="mediverse-success-screen"
+>
+
+
+<div class="success-content">
+
+    <div class="success-loader" id="successLoader">
+
+    </div>
+
+    <div
+        id="successCheckmark"
+        class="success-checkmark"
+    >
+
+        ✓
+
+    </div>
+
+    <h2 id="successTitle">
+
+        Processing Payment...
+
+    </h2>
+
+    <p id="successSubtitle">
+
+        Please wait while we confirm your order
+
+    </p>
+
+    <button
+        class="track-order-btn"
+    >
+
+        Track Order
+
+    </button>
+
+</div>
+
+
+</div>
+
+
+<!-- ==========================================
+MEDIVERSE STICKY FOOTER
+========================================== -->
+
+<div class="mediverse-footer-bar">
+
+<div class="mediverse-footer-actions">
+
+<div class="mediverse-footer-bar">
+
+    <button
+        class="mediverse-footer-back"
+        id="backBtn"
+        type="button"
+        style="display:none;"
+    >
+        <i class="fa-solid fa-arrow-left"></i>
+        Back
+    </button>
+
+    <button
+        class="mediverse-footer-next"
+        id="nextBtn"
+        type="button"
+    >
+        Continue
+        <i class="fa-solid fa-arrow-right"></i>
+    </button>
+<button
+    id="payBtn"
+    class="mediverse-footer-next"
+    type="button"
+    onclick="mediverseProcessPayment()"
+>
+    Pay ₹312
+</button>
+</div>
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}
