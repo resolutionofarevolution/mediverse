@@ -243,65 +243,19 @@ const totalSteps = 5;
 const nextBtn = document.getElementById("nextBtn");
 
 const backBtn = document.getElementById("backBtn");
+/* Footer Buttons */
 
-function showStep(step){
-
-
-currentStep = step;
-
-for(let i=1;i<=totalSteps;i++){
-
-    const section =
-        document.getElementById("step"+i);
-
-    if(section){
-
-        section.classList.remove("active-step");
-
-    }
-
-}
-
-document
-    .getElementById("step"+step)
-    .classList
-    .add("active-step");
-
-/* Progress */
-
-document.getElementById("stepIndicator")
-    .innerHTML =
-    "Step " + step + " of " + totalSteps;
-
-document.getElementById("wizardProgress")
-    .style.width =
-    ((step / totalSteps) * 100) + "%";
-
-/* Back Button */
-
-if(step === 1){
-
-    backBtn.style.display = "none";
-
-}else{
-
-    backBtn.style.display = "inline-flex";
-
-}
-
-/* Footer Label */
-
-const footerLabel =
-    document.getElementById("footerLabel");
-
-/* Step Specific UI */
+const payBtn = document.getElementById("payBtn");
 
 switch(step){
 
     case 1:
 
-        footerLabel.innerHTML =
-        "Review Medicines";
+        footerLabel.innerHTML = "Review Medicines";
+
+        backBtn.style.display = "none";
+        nextBtn.style.display = "inline-flex";
+        payBtn.style.display  = "none";
 
         nextBtn.innerHTML =
         'Continue <i class="fa-solid fa-arrow-right"></i>';
@@ -310,8 +264,11 @@ switch(step){
 
     case 2:
 
-        footerLabel.innerHTML =
-        "Delivery Address";
+        footerLabel.innerHTML = "Delivery Address";
+
+        backBtn.style.display = "inline-flex";
+        nextBtn.style.display = "inline-flex";
+        payBtn.style.display  = "none";
 
         nextBtn.innerHTML =
         'Continue <i class="fa-solid fa-arrow-right"></i>';
@@ -320,8 +277,11 @@ switch(step){
 
     case 3:
 
-        footerLabel.innerHTML =
-        "Contact Details";
+        footerLabel.innerHTML = "Contact Details";
+
+        backBtn.style.display = "inline-flex";
+        nextBtn.style.display = "inline-flex";
+        payBtn.style.display  = "none";
 
         nextBtn.innerHTML =
         'Continue <i class="fa-solid fa-arrow-right"></i>';
@@ -330,59 +290,28 @@ switch(step){
 
     case 4:
 
-        footerLabel.innerHTML =
-        "Review Order";
+        footerLabel.innerHTML = "Review Order";
+
+        backBtn.style.display = "inline-flex";
+        nextBtn.style.display = "inline-flex";
+        payBtn.style.display  = "none";
 
         nextBtn.innerHTML =
-        'Proceed to Payment <i class="fa-solid fa-arrow-right"></i>';
+        'Continue <i class="fa-solid fa-arrow-right"></i>';
 
         break;
 
     case 5:
 
-    nextBtn.innerHTML = 'Pay ₹312';
+        footerLabel.innerHTML = "Payment";
+
+        backBtn.style.display = "none";
+        nextBtn.style.display = "none";
+        payBtn.style.display  = "inline-flex";
 
         break;
 
 }
-
-
-}
-
-
-if(nextBtn){
-
-    nextBtn.onclick=function(){
-
-        if(currentStep<totalSteps){
-
-            currentStep++;
-
-            showStep(currentStep);
-
-        }
-
-    }
-
-}
-
-if(backBtn){
-
-    backBtn.onclick=function(){
-
-        if(currentStep>1){
-
-            currentStep--;
-
-            showStep(currentStep);
-
-        }
-
-    }
-
-}
-
-showStep(1);
 
 
 /* ==========================================

@@ -831,13 +831,9 @@ MEDIVERSE STICKY FOOTER
 
 <div class="mediverse-footer-bar">
 
-<div class="mediverse-footer-actions">
-
-<div class="mediverse-footer-bar">
-
     <button
-        class="mediverse-footer-back"
         id="backBtn"
+        class="mediverse-footer-back"
         type="button"
         style="display:none;"
     >
@@ -846,26 +842,22 @@ MEDIVERSE STICKY FOOTER
     </button>
 
     <button
-        class="mediverse-footer-next"
         id="nextBtn"
+        class="mediverse-footer-next"
         type="button"
     >
         Continue
         <i class="fa-solid fa-arrow-right"></i>
     </button>
-<button
-    id="payBtn"
-    class="mediverse-footer-next"
-    type="button"
-    onclick="mediverseProcessPayment()"
->
-    Pay ₹312
-</button>
-</div>
+
+    <button
+        id="payBtn"
+        class="mediverse-footer-next"
+        type="button"
+        onclick="mediverseProcessPayment()"
+        style="display:none;"
+    >
+        Pay ₹312
+    </button>
 
 </div>
-</div>
-</div>
-
-
-{% endblock %}
